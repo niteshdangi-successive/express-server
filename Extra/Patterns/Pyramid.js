@@ -1,6 +1,6 @@
 
 
-function pyramidPattern(type, rows){
+export default function pyramidPattern(type, rows){
     
     let str = '';
     if(type == 'Half-Pyramid'){
@@ -64,5 +64,5 @@ function pyramidPattern(type, rows){
 
 // pyramidPattern('Half-Pyramid', 5);
 // pyramidPattern('Full-Pyramid', 5);
-pyramidPattern('Diff-Pyramid', 5);
+// pyramidPattern('Diff-Pyramid', 5);
 

@@ -1,5 +1,5 @@
 
-function EquilateralTriangle(row){
+export default function EquilateralTriangle(row){
 
   console.log("Print a Diamond with Rows ",row);
   for (let i = 1; i <= row; i++){
@@ -14,4 +14,4 @@ function EquilateralTriangle(row){
 
 }
 
-EquilateralTriangle(5);
+// EquilateralTriangle(5);

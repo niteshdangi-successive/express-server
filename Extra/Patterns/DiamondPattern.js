@@ -1,4 +1,5 @@
-function createDimondShape(size){
+
+export default function createDimondShape(size){
     console.log("Print a Diamond with Rows ",size);
     for(var i=1;i<=size;i++){
        for(var s=size-1;s>=i;s--){
@@ -21,4 +22,4 @@ function createDimondShape(size){
        }
     }
  }
- createDimondShape(5);
+//  createDimondShape(5);
