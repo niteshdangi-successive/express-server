@@ -7,8 +7,9 @@ export default function createDimondShape(size){
           process.stdout.write(" ");
        }
        for(var col = 1; col <= row; col++){
-          process.stdout.write("* ")
+          process.stdout.write("* ");
        }
+       process.stdout.write("\n");
     }
 
     if(row == size+1){
@@ -19,6 +20,7 @@ export default function createDimondShape(size){
           for(var col = row; col <= size-1; col++){
              process.stdout.write("* ");
           }
+          process.stdout.write("\n");
        }
     }
  }
