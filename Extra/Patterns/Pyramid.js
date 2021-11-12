@@ -1,59 +1,55 @@
-
-
-export default function pyramidPattern(type, rows){
+export default function pyramidPattern(type, size){
     
-    let str = '';
-    if(type == 'Half-Pyramid'){
-        for (let i = 1; i <= rows; i++){
-            for(let j = 1; j <= i; j++){
-                str += j+' ';
+    let pyramid = '';
+
+    if(type == 'halfPyramid'){
+        for (let row = 1; row <= size; row++){
+            for(let col = 1; col <= row; col++){
+                pyramid += col+' ';
             }
-            str += '\n';
+            pyramid += '\n';
         }
-        console.log(str);
+        console.log(pyramid);
     }
 
-    str = '';
+    pyramid = '';
 
-    if(type == 'Full-Pyramid'){
-        if(rows % 2 == 1){
-            for (let i = 1; i <= rows; i++) {
-                for (let j = 1; j <= rows - i; j++) {
-                    str += "  ";
+    if(type == 'fullPyramid'){
+        if(size % 2 == 1){
+            for (let row = 1; row <= size; row++) {
+                for (let col = 1; col <= size - row; col++) {
+                    pyramid += "  ";
                  }
-                let m = i;
-                let r = 2*i-2;
-                for (let k = 1; k <= 2 * i - 1; k++) {
-                    if(k<=i){
-                        str += `${m} `;
-                        m+=1;
-                    }
-                    else{
-                        str += `${r} `;
+                let m = row;
+                let r = 2*row-2;
+                for (let k = 1; k <= 2 * row - 1; k++) {
+                    if(k <= row){
+                        pyramid += `${m} `;
+                        m += 1;
+                    }else{
+                        pyramid += `${r} `;
                         r = r-1;
                     }
                 }
-                str += "\n";
+                pyramid += "\n";
             }
-            console.log(str);
+            console.log(pyramid);
         }else{
-            console.log("Please enter odd rows");
-        }
-        
+            console.log("Please enter odd size");
+        }   
     }
 
+    pyramid = '';
 
-    str = '';
-
-    if(type == 'Diff-Pyramid'){
-        for (let i = 1; i <= rows; i++){
-            for (let j = 1; j <= rows + 4 - i; j++) {
+    if(type == 'diffPyramid'){
+        for (let row = 1; row <= size; row++){
+            for (let col = 1; col <= size + 4 - row; col++) {
               process.stdout.write("*");
             }
-            for (let k = 0; k <  i ; k++) {
-              process.stdout.write(i+"*");
+            for (let star = 0; star <  row ; star++) {
+              process.stdout.write(row+"*");
             }
-            for(let j = 1; j <= rows + 3 - i; j++){
+            for(let col = 1; col <= size + 3 - row; col++){
                 process.stdout.write("*");
             }
             process.stdout.write("\n");
@@ -61,8 +57,3 @@ export default function pyramidPattern(type, rows){
     }
     
 }
-
-// pyramidPattern('Half-Pyramid', 5);
-// pyramidPattern('Full-Pyramid', 5);
-// pyramidPattern('Diff-Pyramid', 5);
-

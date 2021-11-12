@@ -1,17 +1,15 @@
+export default function EquilateralTriangle(size){
 
-export default function EquilateralTriangle(row){
+  console.log("Print a Diamond with Rows ",size);
 
-  console.log("Print a Diamond with Rows ",row);
-  for (let i = 1; i <= row; i++){
-    for (let j = 1; j <= row - i; j++) {
+  for (let row = 1; row <= size; row++){
+    for (let col = 1; col <= size - row; col++) {
       process.stdout.write(" ");
     }
-    for (let k = 0; k <  i ; k++) {
+    for (let star = 0; star <  row ; star++) {
       process.stdout.write("* ");
     }
     process.stdout.write("\n");
   }
 
 }
-
-// EquilateralTriangle(5);

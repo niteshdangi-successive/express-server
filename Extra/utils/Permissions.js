@@ -1,9 +1,7 @@
-
-
 export default function hasPermission(moduleName,role,permissionType){
-    // console.log(permissions[moduleName][permissionType]);
+    
     if(moduleName == 'getUsers'){
-        if(role == 'head-trainer'){
+        if(role == 'headTrainer'){
             return true;
         }else{
             if(role == 'trainer' && (permissionType == 'read' || permissionType == 'write')){
@@ -20,6 +18,3 @@ export default function hasPermission(moduleName,role,permissionType){
         return false;
     } 
 }
-
-// let ans = hasPermission('getUsers','trainee','read');
-// console.log("Ans :",ans);

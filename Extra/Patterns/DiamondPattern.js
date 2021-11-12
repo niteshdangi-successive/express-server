@@ -1,25 +1,24 @@
-
 export default function createDimondShape(size){
+
     console.log("Print a Diamond with Rows ",size);
-    for(var i=1;i<=size;i++){
-       for(var s=size-1;s>=i;s--){
+
+    for(var row = 1; row <= size; row++){
+       for(var space = size-1; space >= row; space--){
           process.stdout.write(" ");
        }
-       for(var j=1;j<=i;j++){
+       for(var col = 1; col <= row; col++){
           process.stdout.write("* ")
        }
-       console.log();
     }
-    if(i==size+1){
-       for(var i=1;i<=size-1;i++){
-          for(var s=1;s<=i;s++){
+
+    if(row == size+1){
+       for(var row = 1; row <= size-1; row++){
+          for(var space = 1; space <= row; space++){
              process.stdout.write(" ");
           }
-          for(j=i;j<=size-1;j++){
+          for(var col = row; col <= size-1; col++){
              process.stdout.write("* ");
           }
-          console.log();
        }
     }
  }
-//  createDimondShape(5);

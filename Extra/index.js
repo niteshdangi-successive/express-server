@@ -4,16 +4,15 @@ import {pyramidPattern} from "./Patterns";
 import { hasPermission }  from "./utils";
 import { validateUser }  from "./utils";
 
-// createDimondShape(5);
+//All methods Call
+
+createDimondShape(5);
 // console.log("\n");
 // EquilateralTriangle(5);
 // console.log("\n");
-// pyramidPattern('Diff-Pyramid',5);
+// pyramidPattern('fullPyramid',5);
 // console.log("\n");
 // let ans = hasPermission('getUsers','trainee','read');
 // console.log("Ans :",ans);
-
-const users = ["trainee1@successive.tech","reviewer1@successive.tech","test123@gmail.com","abcd123.@.com","test.test@gmail.com","demo@outlook.com","123xyz@gmaildotcom"];
-validateUser(users);
-
-
+// const users = ["trainee1@successive.tech","reviewer1@successive.tech","test123@gmail.com","abcd123.@.com","test.test@gmail.com","demo@outlook.com","123xyz@gmaildotcom"];
+// validateUser(users);
