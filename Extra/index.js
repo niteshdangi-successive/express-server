@@ -5,7 +5,6 @@ import { hasPermission }  from "./utils";
 import { validateUser }  from "./utils";
 
 //All methods Call
-
 createDimondShape(5);
 // console.log("\n");
 // EquilateralTriangle(5);
