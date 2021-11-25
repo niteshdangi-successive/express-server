@@ -1,5 +1,6 @@
 import { errorHandler } from './libs/routes/errorHandler';
 import { notFound } from './libs/routes/notFoundRoute';
+import  mainRoutes  from './router';
 require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -15,7 +16,7 @@ export class Server{
         app.get('/health-check',function(req,res){
             res.send('I am Okay!');
         });
-        
+        app.use(mainRoutes);
         app.use(errorHandler);
         app.use(notFound);
     }
