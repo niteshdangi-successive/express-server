@@ -4,6 +4,7 @@ import  mainRoutes  from './router';
 require('dotenv').config();
 const express = require('express');
 const app = express();
+app.use(express.json());
 const bodyParser = require('body-parser');
 
 export class Server{
