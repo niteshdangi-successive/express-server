@@ -1,45 +1,109 @@
-const validationHandler = (config) => (req,res,next) => { 
-    const errMessage = [];
+const validationHandler = (config) => (req, res, next) => {
+    const errMsg = [];
     let flag = false;
-    // console.log("config------>",config);
-    // console.log("body-------->",req.body);
-    for(let key in config){
-        flag = false;
-        const dataPlace = config[key].in;
-        const input = req[dataPlace][key];
-        // console.log("sdddd",dataPlace);
-        // console.log("key---->",key,"  ",req[dataPlace][key]);
-        for(let keyProperty in config[key]){
-            // console.log("Key Attribute----->",dataPlace);
-            switch(keyProperty){
-                case 'required':
-                    if((key in req[dataPlace]) && input !== null){
-                        break;
-                    }else{
-                        if(config[key][keyProperty] === false){
-                            dataPlace.forEach(element => {
-                                req[element][key] = config[key].default;  
-                            });
-                        }else{
-                            errMessage.push(`${key} is required`);
-                            flag = true;
-                        }
-                        break;
-                    }
-
-                case 'string':
-                    if((key in req[dataPlace]) && typeof input === 'string' || !(key in req[dataPlace])){
-                        break;
-                    }else{
-                        errMessage.push(`${key} should be String`);
-                        flag = true;
-                    }
-                    
+    for(const key in config){
+      const dataPlace = config[key].in;
+      const input = req[dataPlace][key];
+      for (const keyProperty in config[key]){
+        switch (keyProperty){
+          case 'required':
+            if(key == 'skip'){
+              if(typeof req[dataPlace].skip !== 'undefined'){
+                let resultSkip = /^[0-9]+$/.test(req[dataPlace].skip);
+                if(resultSkip == true){
+                  console.log(req[dataPlace].skip);
+                  break;
+                }
+                else{
+                  errMsg.push('skip is required in number');
+                  flag = true;
+                  break;
+                }
+              }
+              else{
+                req[dataPlace].skip = 0;
+                console.log(req[dataPlace].skip);
+                break;
+              }
+            }
+           else if(key == 'limit'){
+              if(typeof req[dataPlace].limit !== 'undefined'){
+                let result = /^[0-9]+$/.test(req[dataPlace].limit);
+                if(result == true){
+                  console.log(req[dataPlace].limit);
+                  break;
+                }
+                else{
+                  errMsg.push('limit is required in number');
+                  flag = true;
+                  break;
+                }
+              }
+              else{
+                req[dataPlace].limit = 10;
+                console.log(req[dataPlace].limit);
+                break;
+              }
+            }
+            else{
+              if((key in req[dataPlace]) && input != null ){
+                break;
+              }
+              else{
+                errMsg.push(`${key} is required`);
+                flag = true;
+                break;
+              }
+            }
+          case 'string':
+            if(typeof input != 'undefined'){
+              if(key in req[dataPlace] && typeof input === 'string'){
+                break;
+              }
+              else{
+                errMsg.push(`${key} is required in string`);
+                flag = true;
+                break;
+              }
+            }
+          case 'regex':
+            if(typeof input != 'undefined'){
+              let result = /^[a-zA-Z ]+$/.test(input);
+              if(result == true){
+                break;
+              }
+              else{
+                errMsg.push(`${key} is not in proper form`);
+                flag = true;
+                break;
+              }
+            }
+          case 'custom':
+            if(input != ""){
+              break;
+            }
+            else{
+              errMsg.push(`${key} not equal null string`);
+              flag = true;
+              break;
+            }
+          case 'isObject':
+            if(typeof req[dataPlace].dataToUpdate == 'object'){
+              break;
+            }
+            else{
+              errMsg.push(`${key} is required in object form`)
+              flag = true;
+              break;
             }
         }
+      }
     }
-    console.log("error message: ",errMessage);
-    next();
-}
-
+    if(flag == true){
+      res.send(`Error:${errMsg}`);
+    }
+    else{
+      next();
+    }
+  }
 export default validationHandler;

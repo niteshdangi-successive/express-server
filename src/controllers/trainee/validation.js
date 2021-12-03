@@ -14,14 +14,20 @@ const validation = {
             regex: '', 
             in: ['body'], 
             errorMessage: 'Name is required', 
+        },
+        email: { 
+            required: true, 
+            regex: '', 
+            in: ['body'], 
+            errorMessage: 'email is required', 
         }
     },
 
     delete: {
         id: {
-            required: true, 
-            errorMessage: 'Id is required', 
-            in: ['params']
+            required: true,  
+            in: ['params'],
+            errorMessage: 'Id is required'
         },
     },
 
@@ -49,9 +55,9 @@ const validation = {
             in:['body']
         },
         dataToUpdate: {
-            in: ['body'], 
-            required: true, 
-            isObject: true, 
+            required: true,
+            isObject: true,
+            in: ['body'],   
             custom: function(dataToUpdate) {}
         },
     }
