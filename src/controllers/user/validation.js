@@ -1,4 +1,4 @@
-const validation = {
+const userValidation = {
     create: {
         id: {
             required: true, 
@@ -9,11 +9,19 @@ const validation = {
                 throw { error: 'Error Occured', message: 'Message' } 
             }, 
         },
-        name: { 
+
+        email: { 
             required: true, 
             regex: '', 
             in: ['body'], 
-            errorMessage: 'Name is required', 
+            errorMessage: 'Email is required', 
+        },
+
+        password: { 
+            required: true, 
+            regex: '', 
+            in: ['body'], 
+            errorMessage: 'Password is required', 
         },
     },
 
@@ -57,4 +65,4 @@ const validation = {
     }
 }
 
-export default validation;
+export default userValidation;

@@ -1,11 +1,11 @@
 import {createDimondShape} from "./Patterns";
 import {EquilateralTriangle} from "./Patterns";
 import {pyramidPattern} from "./Patterns";
-import { hasPermission }  from "./utils";
+export  { hasPermission }  from "./utils";
 import { validateUser }  from "./utils";
 
 //All methods Call
-createDimondShape(5);
+// createDimondShape(5);
 // console.log("\n");
 // EquilateralTriangle(5);
 // console.log("\n");

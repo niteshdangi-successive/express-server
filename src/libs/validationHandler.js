@@ -26,33 +26,35 @@ const validationHandler = (config) => (req, res, next) => {
                 break;
               }
             }
-           else if(key == 'limit'){
-              if(typeof req[dataPlace].limit !== 'undefined'){
-                let result = /^[0-9]+$/.test(req[dataPlace].limit);
-                if(result == true){
+            else{
+              if(key == 'limit'){
+                  if(typeof req[dataPlace].limit !== 'undefined'){
+                    let result = /^[0-9]+$/.test(req[dataPlace].limit);
+                    if(result == true){
+                      console.log(req[dataPlace].limit);
+                      break;
+                    }
+                    else{
+                      errMsg.push('limit is required in number');
+                      flag = true;
+                      break;
+                    }
+                }
+                else{
+                  req[dataPlace].limit = 10;
                   console.log(req[dataPlace].limit);
                   break;
                 }
+              }
+              else{
+                if((key in req[dataPlace]) && input != null ){
+                  break;
+                }
                 else{
-                  errMsg.push('limit is required in number');
+                  errMsg.push(`${key} is required`);
                   flag = true;
                   break;
                 }
-              }
-              else{
-                req[dataPlace].limit = 10;
-                console.log(req[dataPlace].limit);
-                break;
-              }
-            }
-            else{
-              if((key in req[dataPlace]) && input != null ){
-                break;
-              }
-              else{
-                errMsg.push(`${key} is required`);
-                flag = true;
-                break;
               }
             }
           case 'string':
@@ -67,8 +69,13 @@ const validationHandler = (config) => (req, res, next) => {
               }
             }
           case 'regex':
+            let result = false;
             if(typeof input != 'undefined'){
-              let result = /^[a-zA-Z ]+$/.test(input);
+              // if((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(req[dataPlace].email))){
+              //   break;
+              // }
+              
+              result = /^[a-zA-Z ]+$/.test(input);
               if(result == true){
                 break;
               }
