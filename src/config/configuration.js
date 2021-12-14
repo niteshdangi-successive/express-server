@@ -1,5 +1,6 @@
 export let Configuration = Object.freeze({
-    port: (process.env.PORT)
+    port: (process.env.PORT),
+    mongoUrl: (process.env.MONGO_URL)
 });
 
 export const obj = {

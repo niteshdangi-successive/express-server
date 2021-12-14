@@ -1,6 +1,7 @@
 import { errorHandler } from './libs/routes/errorHandler';
 import { notFound } from './libs/routes/notFoundRoute';
 import  mainRoutes  from './router';
+import Database from './libs/database';
 require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -9,8 +10,7 @@ const bodyParser = require('body-parser');
 
 export class Server{
     constructor(config){
-        app.listen(config);
-        this.run();
+        this.run(config);
     }
 
     setupRoutes(){
@@ -26,12 +26,17 @@ export class Server{
         this.setupRoutes();
     }
 
-    run(){
+    async run(config){
         app.get("/",function (req, res) {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write('Hello World!');
             res.end();
           });
+        let dbCon = await Database.open(config.mongoUrl);
+        if(dbCon){
+            app.listen(config.port);
+        }
+        
     }
 
     initBodyParser(){
