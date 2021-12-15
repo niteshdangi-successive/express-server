@@ -6,7 +6,7 @@ const express = require('express');
 const mainRoutes = express.Router();
 
 mainRoutes.use('/trainee', traineeRouter);
-mainRoutes.use('/user', userRouter);
-mainRoutes.use('/add', userRepositoryRoutes);
+mainRoutes.use('/dummy-user', userRouter);
+mainRoutes.use('/user', userRepositoryRoutes);
 
 export default mainRoutes;
