@@ -4,11 +4,11 @@ const express = require('express');
 const router = express.Router();
 
 router.route('/create')
-.post(seed, userRepository.create)
+.post(userRepository.create)
 router.route('/')
-.get(userRepository.read)
+.get(userRepository.get)
 router.route('/:id')
-.get(userRepository.read)
+.get(userRepository.get)
 .put(userRepository.update)
 .delete(userRepository.delete)
 

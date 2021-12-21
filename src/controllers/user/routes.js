@@ -7,7 +7,8 @@ const router = express.Router();
 const userController = new UserController();
 
 
-router.route('/login')
-.post(validationHandler(userValidation.create),userController.userLogin,authMiddleWare('module','permissionType'))
+router.route('/')
+// .post(validationHandler(userValidation.create),authMiddleWare('getUsers','write'),userController.userLogin)
+.post(userController.userLogin,authMiddleWare('getUsers','write'))
 
 export default router;

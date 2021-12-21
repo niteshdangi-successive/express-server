@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 autoIncrement.initialize(mongoose.connection);
 
-userSchema.plugin(autoIncrement.plugin, 'user');
+userSchema.plugin(autoIncrement.plugin, 'User');
 
 userSchema.pre('save', function(next){
     let thisUser = this;
@@ -17,6 +17,9 @@ userSchema.pre('save', function(next){
     });
 });
 
-const User = mongoose.model('user', userSchema );
+userSchema.methods.validateUserPassword = async function validateUserPassword(userPassword){
+    return await bcrypt.compare(userPassword, this.password);
+}
 
+const User = mongoose.model('User', userSchema );
 module.exports = User;

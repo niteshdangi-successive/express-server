@@ -1,4 +1,5 @@
 import User from './userModel';
+const bcrypt = require('bcrypt');
 
 class UserRepository{
 
@@ -12,7 +13,7 @@ class UserRepository{
         .catch((err) => { res.status(400).json('Error: '+err) });
     }
 
-    read = async (req, res) => {
+    get = async (req, res) => {
         let { id } = req.params;
         try{
             if(id !== undefined){
@@ -36,6 +37,11 @@ class UserRepository{
     update = async (req, res) => {
         let { id } = req.params;
         let dataToUpdate = req.body;
+        if(dataToUpdate.password){
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(dataToUpdate.password,salt);
+            dataToUpdate.password = hashPassword;
+        }
         try{
             let user = await User.findByIdAndUpdate(id, dataToUpdate);
             res.send("Data Updated Successfully!");

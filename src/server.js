@@ -2,6 +2,7 @@ import { errorHandler } from './libs/routes/errorHandler';
 import { notFound } from './libs/routes/notFoundRoute';
 import  mainRoutes  from './router';
 import Database from './libs/database';
+
 require('dotenv').config();
 const express = require('express');
 const app = express();
